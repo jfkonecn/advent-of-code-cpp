@@ -1,4 +1,4 @@
-#include "../common/utils.h"
+#include "../../common/utils.h"
 #include <advent_of_code_2021_day_01/solution.h>
 #include <gtest/gtest.h>
 
