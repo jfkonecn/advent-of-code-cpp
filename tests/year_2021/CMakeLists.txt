@@ -1,10 +1,10 @@
 
-add_executable(advent_of_code_2021_day_01_tests day_01_tests.cpp)
+add_executable(test_advent_of_code_2021_day_01 test_day_01.cpp)
 
-target_link_libraries(advent_of_code_2021_day_01_tests
+target_link_libraries(test_advent_of_code_2021_day_01
  PRIVATE
   GTest::GTest
   advent_of_code_2021_day_01)
 
-add_test(2021_day_01_tests advent_of_code_2021_day_01_tests)
+add_test(test_2021_day_01 test_advent_of_code_2021_day_01)
 
