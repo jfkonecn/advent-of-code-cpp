@@ -7,7 +7,6 @@
 int solution_1(std::string contents) {
   std::stringstream ss(contents);
   std::string line;
-  auto last = INT_MAX;
   int vertical = 0;
   int horizontal = 0;
   while (std::getline(ss, line, '\n')) {
@@ -31,29 +30,22 @@ int solution_1(std::string contents) {
 int solution_2(std::string contents) {
   std::stringstream ss(contents);
   std::string line;
-
-  std::getline(ss, line, '\n');
-  auto first = std::stoi(line);
-
-  std::getline(ss, line, '\n');
-  auto second = std::stoi(line);
-
-  std::getline(ss, line, '\n');
-  auto third = std::stoi(line);
-
-  int count = 0;
-  auto last = first + second + third;
-
+  int vertical = 0;
+  int horizontal = 0;
   while (std::getline(ss, line, '\n')) {
-    auto current = std::stoi(line);
-    auto currentSum = std::stoi(line) + second + third;
-    if (currentSum > last) {
-      count++;
+    std::stringstream lineStream(line);
+    std::string direction;
+    std::string amountStr;
+    std::getline(lineStream, direction, ' ');
+    std::getline(lineStream, amountStr, ' ');
+    auto amount = std::stoi(amountStr);
+    if (direction == "up") {
+      vertical += amount;
+    } else if (direction == "down") {
+      vertical -= amount;
+    } else {
+      horizontal += amount;
     }
-    last = currentSum;
-    first = second;
-    second = third;
-    third = current;
   }
-  return count;
+  return -1 * vertical * horizontal;
 }
