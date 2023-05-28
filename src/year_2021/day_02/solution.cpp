@@ -1,4 +1,5 @@
 #include <advent_of_code_2021_day_02/solution.h>
+#include <cmath>
 #include <limits.h>
 #include <sstream>
 #include <string>
@@ -32,6 +33,7 @@ int solution_2(std::string contents) {
   std::string line;
   int vertical = 0;
   int horizontal = 0;
+  int aim = 0;
   while (std::getline(ss, line, '\n')) {
     std::stringstream lineStream(line);
     std::string direction;
@@ -40,11 +42,12 @@ int solution_2(std::string contents) {
     std::getline(lineStream, amountStr, ' ');
     auto amount = std::stoi(amountStr);
     if (direction == "up") {
-      vertical += amount;
+      aim -= amount;
     } else if (direction == "down") {
-      vertical -= amount;
+      aim += amount;
     } else {
       horizontal += amount;
+      vertical -= std::abs(aim * amount);
     }
   }
   return -1 * vertical * horizontal;
