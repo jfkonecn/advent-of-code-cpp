@@ -1,0 +1,2 @@
+add_library(advent_of_code_2021_day_01 solution.cpp)
+add_library(advent_of_code_2021_day_01 PUBLIC include)
