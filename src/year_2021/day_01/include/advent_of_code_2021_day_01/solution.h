@@ -1,1 +1,2 @@
-int multiply(int a, int b);
+#include <string>
+int solution(std::string contents);

@@ -1,4 +1,4 @@
 #!/bin/bash
 ./build.sh
 cd build
-ctest
+ctest --verbose
