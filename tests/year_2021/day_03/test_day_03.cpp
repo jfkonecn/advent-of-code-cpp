@@ -18,14 +18,14 @@ TEST(Test_2021_Day_03, REAL_1) {
 
 TEST(Test_2021_Day_03, Example_2) {
   auto str = get_file_contents("example.txt");
-  const auto expected = 1;
+  const auto expected = 230;
   const auto actual = solution_2(str);
   ASSERT_EQ(expected, actual);
 }
 
 TEST(Test_2021_Day_03, REAL_2) {
   auto str = get_file_contents("real.txt");
-  const auto expected = 1;
+  const auto expected = 7928162;
   const auto actual = solution_2(str);
   ASSERT_EQ(expected, actual);
 }
