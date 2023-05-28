@@ -6,5 +6,5 @@ target_link_libraries(advent_of_code_2021_day_01_tests
   GTest::GTest
   advent_of_code_2021_day_01)
 
-add_test(multiply_gtest advent_of_code_2021_day_01_tests)
+add_test(2021_day_01_tests advent_of_code_2021_day_01_tests)
 
