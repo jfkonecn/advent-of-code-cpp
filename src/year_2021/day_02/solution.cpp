@@ -4,13 +4,6 @@
 #include <string>
 #include <vector>
 
-enum class Direction { Up, Down, Forward };
-
-struct Action {
-  int amount;
-  Direction direction;
-};
-
 int solution_1(std::string contents) {
   std::stringstream ss(contents);
   std::string line;
@@ -19,19 +12,14 @@ int solution_1(std::string contents) {
   int horizontal = 0;
   while (std::getline(ss, line, '\n')) {
     std::stringstream lineStream(line);
-    std::string splitLine;
-    std::getline(lineStream, splitLine, ' ');
-    auto direction = Direction::Forward;
-    if (splitLine == "up") {
-      direction = Direction::Up;
-    } else if (splitLine == "down") {
-      direction = Direction::Down;
-    }
-    std::getline(lineStream, splitLine, ' ');
-    auto amount = std::stoi(splitLine);
-    if (direction == Direction::Up) {
+    std::string direction;
+    std::string amountStr;
+    std::getline(lineStream, direction, ' ');
+    std::getline(lineStream, amountStr, ' ');
+    auto amount = std::stoi(amountStr);
+    if (direction == "up") {
       vertical += amount;
-    } else if (direction == Direction::Down) {
+    } else if (direction == "down") {
       vertical -= amount;
     } else {
       horizontal += amount;
