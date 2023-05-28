@@ -4,28 +4,28 @@
 
 TEST(Test_2021_Day_03, Example_1) {
   auto str = get_file_contents("example.txt");
-  const auto expected = 150;
+  const auto expected = 198;
   const auto actual = solution_1(str);
   ASSERT_EQ(expected, actual);
 }
 
 TEST(Test_2021_Day_03, REAL_1) {
   auto str = get_file_contents("real.txt");
-  const auto expected = 1962940;
+  const auto expected = 3895776;
   const auto actual = solution_1(str);
   ASSERT_EQ(expected, actual);
 }
 
 TEST(Test_2021_Day_03, Example_2) {
   auto str = get_file_contents("example.txt");
-  const auto expected = 900;
+  const auto expected = 1;
   const auto actual = solution_2(str);
   ASSERT_EQ(expected, actual);
 }
 
 TEST(Test_2021_Day_03, REAL_2) {
   auto str = get_file_contents("real.txt");
-  const auto expected = 1813664422;
+  const auto expected = 1;
   const auto actual = solution_2(str);
   ASSERT_EQ(expected, actual);
 }
