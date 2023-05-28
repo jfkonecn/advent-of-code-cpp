@@ -17,3 +17,11 @@ Advent of Code challenges in c++
 ```sh
 ./test.sh
 ```
+
+## Ubuntu Notes
+
+install g++ for Ubuntu to get Neovim to work correctly
+
+```sh
+ sudo apt install g++-12
+```
