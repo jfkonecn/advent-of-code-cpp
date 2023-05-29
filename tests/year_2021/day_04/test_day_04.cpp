@@ -25,7 +25,7 @@ TEST(Test_2021_Day_04, Example_2) {
 
 TEST(Test_2021_Day_04, REAL_2) {
   auto str = get_file_contents("real.txt");
-  const auto expected = 1;
+  const auto expected = 2568;
   const auto actual = solution_2(str);
   ASSERT_EQ(expected, actual);
 }

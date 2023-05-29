@@ -70,9 +70,7 @@ bool bingo(const std::vector<int> &card, int idx) {
 
 int solution_1(std::string contents) {
   auto [numbers, bingoCards] = parse(contents);
-  int round = 0;
   for (auto curNum : numbers) {
-    round++;
     for (auto &curCard : bingoCards) {
       for (int i = 0; i < curCard.size(); ++i) {
         if (curCard[i] == curNum) {
@@ -96,26 +94,36 @@ int solution_1(std::string contents) {
 
 int solution_2(std::string contents) {
   auto [numbers, bingoCards] = parse(contents);
-  int round = 0;
-  for (auto curNum : numbers) {
-    round++;
-    for (auto &curCard : bingoCards) {
+  int maxRound = 0;
+  int result = 0;
+  for (auto &curCard : bingoCards) {
+    int currentRound = 0;
+    bool isWinner = false;
+    for (auto curNum : numbers) {
+      currentRound++;
       for (int i = 0; i < curCard.size(); ++i) {
         if (curCard[i] == curNum) {
           curCard[i] = -1;
           if (bingo(curCard, i)) {
+            isWinner = true;
             int cardSum = 0;
             for (auto cardNum : curCard) {
               if (cardNum != -1) {
                 cardSum += cardNum;
               }
             }
-            return cardSum * curNum;
+            if (currentRound > maxRound) {
+              maxRound = currentRound;
+              result = cardSum * curNum;
+            }
           }
           break;
         }
       }
+      if (isWinner) {
+        break;
+      }
     }
   }
-  return 0;
+  return result;
 }
