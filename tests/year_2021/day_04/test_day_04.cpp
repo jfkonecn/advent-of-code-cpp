@@ -4,21 +4,21 @@
 
 TEST(Test_2021_Day_04, Example_1) {
   auto str = get_file_contents("example.txt");
-  const auto expected = 1;
+  const auto expected = 4512;
   const auto actual = solution_1(str);
   ASSERT_EQ(expected, actual);
 }
 
 TEST(Test_2021_Day_04, REAL_1) {
   auto str = get_file_contents("real.txt");
-  const auto expected = 1;
+  const auto expected = 45031;
   const auto actual = solution_1(str);
   ASSERT_EQ(expected, actual);
 }
 
 TEST(Test_2021_Day_04, Example_2) {
   auto str = get_file_contents("example.txt");
-  const auto expected = 1;
+  const auto expected = 1924;
   const auto actual = solution_2(str);
   ASSERT_EQ(expected, actual);
 }

@@ -10,9 +10,10 @@
 #include <vector>
 
 using std::string;
+using std::tuple;
 using std::vector;
 
-std::tuple<vector<int>, vector<vector<int>>> parse(string contents) {
+tuple<vector<int>, vector<vector<int>>> parse(string contents) {
   std::stringstream ss(contents);
   std::string line;
   std::getline(ss, line, '\n');
@@ -45,74 +46,76 @@ std::tuple<vector<int>, vector<vector<int>>> parse(string contents) {
   return std::make_tuple(numbers, bingoCards);
 }
 
+bool bingo(const std::vector<int> &card, int idx) {
+  int row = idx / 5;
+  int col = idx % 5;
+  for (int i = 0; i < 5; ++i) {
+    if (card[row * 5 + i] != -1) {
+      break;
+    }
+    if (i == 4) {
+      return true;
+    }
+  }
+  for (int i = 0; i < 5; ++i) {
+    if (card[i * 5 + col] != -1) {
+      break;
+    }
+    if (i == 4) {
+      return true;
+    }
+  }
+  return false;
+}
+
 int solution_1(std::string contents) {
   auto [numbers, bingoCards] = parse(contents);
+  int round = 0;
+  for (auto curNum : numbers) {
+    round++;
+    for (auto &curCard : bingoCards) {
+      for (int i = 0; i < curCard.size(); ++i) {
+        if (curCard[i] == curNum) {
+          curCard[i] = -1;
+          if (bingo(curCard, i)) {
+            int cardSum = 0;
+            for (auto cardNum : curCard) {
+              if (cardNum != -1) {
+                cardSum += cardNum;
+              }
+            }
+            return cardSum * curNum;
+          }
+          break;
+        }
+      }
+    }
+  }
   return 0;
 }
 
-int bin_string_to_int(std::string s) {
-  int total = 0;
-  for (std::size_t i = 0; i < s.length(); ++i) {
-    if (s[i] == '1') {
-      total += std::pow(2, s.length() - 1 - i);
-    }
-  }
-  return total;
-}
-
 int solution_2(std::string contents) {
-  std::stringstream ss(contents);
-  std::string line;
-  auto oxygen = std::vector<std::string>();
-  while (std::getline(ss, line, '\n')) {
-    oxygen.push_back(line);
-  }
-
-  auto lineLength = oxygen[0].length();
-  auto carbon = std::vector<std::string>(oxygen);
-
-  for (int i = 0; i < lineLength; ++i) {
-    if (oxygen.size() == 1) {
-      break;
-    }
-    int total = 0;
-    for (auto cur : oxygen) {
-      if (cur[i] == '1') {
-        total++;
-      } else {
-        total--;
+  auto [numbers, bingoCards] = parse(contents);
+  int round = 0;
+  for (auto curNum : numbers) {
+    round++;
+    for (auto &curCard : bingoCards) {
+      for (int i = 0; i < curCard.size(); ++i) {
+        if (curCard[i] == curNum) {
+          curCard[i] = -1;
+          if (bingo(curCard, i)) {
+            int cardSum = 0;
+            for (auto cardNum : curCard) {
+              if (cardNum != -1) {
+                cardSum += cardNum;
+              }
+            }
+            return cardSum * curNum;
+          }
+          break;
+        }
       }
     }
-    auto charToRemove = total < 0 ? '1' : '0';
-    auto remove = [i, charToRemove](std::string s) {
-      return s[i] == charToRemove;
-    };
-    oxygen.erase(std::remove_if(oxygen.begin(), oxygen.end(), remove),
-                 oxygen.end());
   }
-
-  auto oxygenVal = bin_string_to_int(oxygen[0]);
-
-  for (int i = 0; i < lineLength; ++i) {
-    if (carbon.size() == 1) {
-      break;
-    }
-    int total = 0;
-    for (auto cur : carbon) {
-      if (cur[i] == '1') {
-        total++;
-      } else {
-        total--;
-      }
-    }
-    auto charToRemove = total < 0 ? '0' : '1';
-    auto remove = [i, charToRemove](std::string s) {
-      return s[i] == charToRemove;
-    };
-    carbon.erase(std::remove_if(carbon.begin(), carbon.end(), remove),
-                 carbon.end());
-  }
-  auto carbonVal = bin_string_to_int(carbon[0]);
-
-  return oxygenVal * carbonVal;
+  return 0;
 }
