@@ -1,0 +1,2 @@
+add_library(advent_of_code_2021_day_05 solution.cpp)
+target_include_directories(advent_of_code_2021_day_05 PUBLIC include)
