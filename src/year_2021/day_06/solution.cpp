@@ -24,11 +24,10 @@ vector<int> parse(string contents) {
   return fish;
 }
 
-int solution_1(std::string contents) {
-  auto fish = parse(contents);
-  for (int round = 0; round < 80; round++) {
+int simulate(vector<int> *fish, int totalRounds) {
+  for (int round = 0; round < totalRounds; round++) {
     int fishToAdd = 0;
-    for (auto &life : fish) {
+    for (auto &life : *fish) {
       if (life == 0) {
         life = 6;
         fishToAdd++;
@@ -37,19 +36,21 @@ int solution_1(std::string contents) {
       }
     }
     for (int i = 0; i < fishToAdd; i++) {
-      fish.push_back(8);
+      fish->push_back(8);
     }
-    //// print all fish
-    // for (auto &life : fish) {
-    // std::cout << life << ",";
-    //}
-    // std::cout << std::endl;
   }
 
-  return fish.size();
+  return fish->size();
+}
+
+int solution_1(std::string contents) {
+  auto fish = parse(contents);
+  int totalRounds = 80;
+  return simulate(&fish, totalRounds);
 }
 
 int solution_2(std::string contents) {
   auto fish = parse(contents);
-  return fish.max_size();
+  int totalRounds = 256;
+  return simulate(&fish, totalRounds);
 }

@@ -18,7 +18,7 @@ TEST(Test_2021_Day_06, REAL_1) {
 
 TEST(Test_2021_Day_06, Example_2) {
   auto str = get_file_contents("example.txt");
-  const auto expected = 1;
+  const auto expected = 26984457539;
   const auto actual = solution_2(str);
   ASSERT_EQ(expected, actual);
 }
