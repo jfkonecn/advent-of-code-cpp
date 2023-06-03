@@ -1,2 +1,3 @@
 add_subdirectory(year_2021)
 add_subdirectory(advent_of_code)
+include_directories(common)
