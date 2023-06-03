@@ -26,8 +26,8 @@ vector<int> parse(string contents) {
   return fish;
 }
 
-BigInt simulate(vector<int> *fish, int totalRounds) {
-  auto fishRound = new long long[9];
+string simulate(vector<int> *fish, int totalRounds) {
+  auto fishRound = new BigInt[9];
 
   for (int i = 0; i < 9; i++) {
     fishRound[i] = 0;
@@ -36,9 +36,6 @@ BigInt simulate(vector<int> *fish, int totalRounds) {
   for (auto life : *fish) {
     fishRound[life]++;
   }
-  // std::cout << "         " << 0 << " " << 1 << " " << 2 << " " << 3 << " " <<
-  // 4
-  //<< " " << 5 << " " << 6 << " " << 7 << " " << 8 << std::endl;
 
   for (int i = 0; i < totalRounds; i++) {
     auto resetFish = fishRound[0];
@@ -47,33 +44,24 @@ BigInt simulate(vector<int> *fish, int totalRounds) {
     }
     fishRound[8] = resetFish;
     fishRound[6] += resetFish;
-    // label arr
-    // print round
-    // std::cout << "Round " << i + 1 << ": ";
-    // for (int j = 0; j < 9; j++) {
-    // std::cout << fishRound[j] << " ";
-    //}
-    // std::cout << std::endl;
-    // std::cout << std::accumulate(fishRound, fishRound + 9, 0) << std::endl;
   }
 
   BigInt total = 0;
   for (int i = 0; i < 9; i++) {
     total += fishRound[i];
   }
-  std::cout << total << std::endl;
 
-  return total;
+  return total.to_string();
 }
 
-BigInt solution_1(std::string contents) {
+string solution_1(std::string contents) {
   auto fish = parse(contents);
   int totalRounds = 80;
   // int totalRounds = 8;
   return simulate(&fish, totalRounds);
 }
 
-BigInt solution_2(std::string contents) {
+string solution_2(std::string contents) {
   auto fish = parse(contents);
   int totalRounds = 256;
   return simulate(&fish, totalRounds);
