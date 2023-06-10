@@ -1,4 +1,4 @@
-#include "../../common/BigInt.hpp"
+#include "BigInt/BigInt.hpp"
 #include <advent_of_code_2021_day_06/solution.h>
 #include <algorithm>
 #include <array>

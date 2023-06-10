@@ -1,2 +1,3 @@
 add_library(advent_of_code_2021_day_06 solution.cpp)
-target_include_directories(advent_of_code_2021_day_06 PUBLIC include)
+target_include_directories(advent_of_code_2021_day_06 PUBLIC include )
+target_link_libraries(advent_of_code_2021_day_06 PRIVATE advent_of_code_extern)

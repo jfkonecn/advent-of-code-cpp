@@ -1,0 +1,3 @@
+add_library(advent_of_code_extern include/BigInt/BigInt.hpp)
+target_include_directories(advent_of_code_extern PUBLIC include)
+set_target_properties(advent_of_code_extern PROPERTIES LINKER_LANGUAGE CXX)
